@@ -1,0 +1,5 @@
+opam-version: "1.2"
+maintainer: "alpha.kai.net@alpha-kai-net.info"
+authors: ["Akihiro Shoji"]
+license: "MIT"
+build: [["jbuilder" "build" "--only-packages" "%{name}%" "--root" "." "-j" jobs "@install"]]

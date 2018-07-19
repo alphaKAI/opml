@@ -1,0 +1,8 @@
+(jbuild_version 1)
+(copy_files# PML/*.{ml,mli})
+(executable
+  ((name main)
+   (public_name opml)
+   (preprocess (pps (ppx_deriving.show ppx_deriving.eq ppx_deriving.ord ppx_sexp_conv ppx_let)))
+   (libraries (core sexplib))
+   ))
