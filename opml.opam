@@ -3,3 +3,9 @@ maintainer: "alpha.kai.net@alpha-kai-net.info"
 authors: ["Akihiro Shoji"]
 license: "MIT"
 build: [["jbuilder" "build" "--only-packages" "%{name}%" "--root" "." "-j" jobs "@install"]]
+depends: [
+  "core"
+  "ppx_deriving"
+  "ppx_let"
+  "sexplib"
+]
