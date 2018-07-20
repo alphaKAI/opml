@@ -81,7 +81,7 @@ let rec eval v = function
   | Imply (f, g) -> 
     let a = eval v f
     and b = eval v g in
-    Option.map2 ~f:(||) a b
+    Option.map2 ~f:(||) (Option.map ~f:(not) a) b
   | Equiv (f, g) -> 
     let a = eval v f
     and b = eval v g in
