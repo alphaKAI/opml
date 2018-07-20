@@ -14,7 +14,6 @@ let rec interactive env =
   | Some Q -> Printf.printf "Quit.\n"; Out_channel.flush stdout
   | Some (Comment _) -> interactive env
   | Some c -> 
-    Printf.printf "some";
     Out_channel.flush stdout;
     (match (run c env) with
      | Some (Proved (thms, k)) ->
