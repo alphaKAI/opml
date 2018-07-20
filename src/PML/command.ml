@@ -29,8 +29,20 @@ let show_command = function
 
 module SFMap = Map.Make(String)
 
+let show_SFMap sfm =
+  let in_str = SFMap.keys sfm
+               |> List.map ~f:(fun key ->
+                   let v = SFMap.find_exn sfm key in
+                   Printf.sprintf "%s : %s" key (show_formula v)
+                 ) in
+  "[" ^ (String.concat ~sep:"; " in_str) ^ "]"
+
 type proved =
   | Proved of formula list * formula SFMap.t
+
+let show_proved = function
+  | Proved (fl, sfm) ->
+    Printf.sprintf "Proved ([%s], %s)" (List.map ~f:show_formula fl |> String.concat ~sep:"; ") (show_SFMap sfm)
 
 let emptyEnv () = Proved ([], SFMap.empty)
 
@@ -77,7 +89,6 @@ let mp s =
       | _ -> None)
   | None -> None
 
-
 let us s =
   match  (indicator_f s) with
   | Some (i, s') -> (
@@ -94,7 +105,6 @@ let gn s =
   match (indicator_f s) with
   | Some (i, "") -> Some (G (i))
   | _ -> None
-
 
 let name s =
   match (indicator_f s) with
@@ -169,4 +179,5 @@ let run cmd prov =
          | Some _ -> None)
       | _ -> None)
   | (Q, _) | (Comment _, _) -> None
+
 
